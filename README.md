@@ -23,3 +23,26 @@ Then go to the urls.py in project folder and include the urls of app.
 ```
 python manage.py runserver
 ```
+
+#### Set Templates
+Make a folder call templates and go the project folder settings file and add the templates folder location as value in `TEMPLATES` dictionary's `DIRS` key.
+
+```
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR, "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+```
+
+Now we have to change the return value of index function in `view.py` to render.
