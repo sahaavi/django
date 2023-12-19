@@ -14,7 +14,14 @@ def index(request):
     # return render(request, 'index.html', context)
     return render(request, 'index.html')
 
+# Counter for GET method
+# def counter(request):
+#     text = request.GET['text']
+#     total_words = len(text.split())
+#     return render(request, 'counter.html', {'total_words': total_words})
+
+# Counter for POST method
 def counter(request):
-    text = request.GET['text']
+    text = request.POST['text']
     total_words = len(text.split())
     return render(request, 'counter.html', {'total_words': total_words})
