@@ -46,3 +46,19 @@ TEMPLATES = [
 ```
 
 Now we have to change the return value of index function in `view.py` to render.
+
+TO add the app to the project go to the project settings file and add `myapp` in `INSTALLED APPS`  
+
+To save the changes in app's model file and make it a database we need to run the command `python manage.py makemigrations` then `python manage.py migrate`
+So it sends the data to django database
+
+We can check it in django admin panel.
+admin panel url: http://127.0.0.1:8000/admin  
+
+But we don't have any credentials so we have to create the superuser now.
+Run the command below  
+`python manage.py createsuperuser`
+
+We have to register the model databse in `admin.py` of our app in order to see it in the admin panel.
+
+Now we can add data from the admin panel.
