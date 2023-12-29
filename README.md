@@ -62,3 +62,37 @@ Run the command below
 We have to register the model databse in `admin.py` of our app in order to see it in the admin panel.
 
 Now we can add data from the admin panel.
+
+#### Dynamic URL Routing
+Make a path in app urls.py
+`path('post/<str:pk>, views.post, name='post')`
+Then make the post function in views
+```python
+def post(request, pk):
+    return render(request, 'post.html', {'pk': pk})
+```
+Make the post.html file inside template
+```html
+<h1>The value in the url is {{pk}}</h1>
+```
+Now you will get whatever you want as you pass after this post http://127.0.0.1:8000/post/
+
+#### Connect to PostgreSQL Database
+goto projects settings.py & modify the `DATABASES` variable
+
+change the engine to postgresql & change the name to your database name
+
+```python
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "django",
+        "USER": 'postgres',
+        "PASSWORD": '',
+        "HOST": 'localhost'
+    }
+}
+```
+
+Then isntall 2 packages 'psycopg2' & 'Pillow'. Now execute the command below:
+`python manage.py makemigrations` then `python manage.py migrate`

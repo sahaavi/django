@@ -77,3 +77,35 @@ def register(request):
             return render(request, 'register.html')
     else:
         return render(request, 'register.html')
+    
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        # print(username, password)
+
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            # return render(request, 'index.html')
+            return redirect('/')
+        else:
+            messages.info(request, 'Invalid Credentials')
+            # return render(request, 'login.html')
+            return redirect('login')
+    else:
+        # return render(request, 'login.html')
+        return render(request, 'login.html')
+    
+def logout(request):
+    auth.logout(request)
+    # return render(request, 'index.html')
+    return redirect('/')
+
+def post(request, pk):
+    return render(request, 'post.html', {'pk': pk})
+
+def dynamic(request):
+    pages = ['ontika', 'promy', 'avi', 'saha', '1']
+    return render(request, 'dynamic.html', {'pages': pages})
